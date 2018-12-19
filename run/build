@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+if [ -d out ]; then
+	find out/ -maxdepth 1 -mindepth 1 -exec rm -rf {} \;
+fi
+
+export DEBUG="*,-mquery,-data/connection,-babel,-agenda*"
+
+clear
+echo -en "Building The App\n"
+node_modules/.bin/tsc --pretty --project tsconfig.json
+
+echo -en "Building The Front\n"
+node_modules/.bin/webpack --config config/webpack.front.js
+
+echo -en "Performing The Migration\n"
+chmod 777 run/migrate && sync && run/migrate

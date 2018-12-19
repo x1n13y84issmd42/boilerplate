@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+export DEBUG="*,-express*,mquery*,-send,-connect*"
+clear && node -r tsconfig-paths/register out/app/main.js

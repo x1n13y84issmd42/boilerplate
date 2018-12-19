@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+export DEBUG="*,-express*,mquery*,-send,-agenda*"
+clear && node out/app/worker.js

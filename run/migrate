@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+export NODE_MONGOOSE_MIGRATIONS_CONFIG=migration.js
+export DEBUG="*,-mquery,-data/connection,-babel,-agenda*"
+
+MIGRATOR=out/app/migrate.js
+
+if [ ! -f $MIGRATOR ]; then
+	echo "$MIGRATOR not found. Please build the app first, then run migrations."
+	exit -1;
+fi
+
+node -r tsconfig-paths/register $MIGRATOR $*

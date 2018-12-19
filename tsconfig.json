@@ -1,0 +1,49 @@
+{
+	"include": [
+		"./src/**/*"
+	],
+	"exclude": [
+		"./node_modules",
+		"./out"
+	],
+	"compilerOptions": {
+		"outDir": "./out",
+		"baseUrl": "./src",
+		"rootDir": "./src",
+
+		"paths": {
+			"ACL": ["app/lib/Auth/ACL"],
+			"fw/*": ["app/fw/*"],
+			"HTTP/*": ["app/HTTP/*"],
+			"lib/*": ["app/lib/*"],
+			"main/*": ["app/main/*"],
+			"models/*": ["app/models/*"],
+			"system/*": ["app/system/*"],
+			"app": ["app/app"],
+			"main": ["app/main"],
+			"migrate": ["app/migrate"],
+			"tasks": ["app/tasks"],
+			"worker": ["app/worker"],
+		},
+
+		"module": "commonjs",
+		"moduleResolution": "node",
+
+		"allowJs": false,
+		"declaration": true,
+		"experimentalDecorators": true,
+		"noImplicitAny": false,
+		"preserveConstEnums": true,
+		"removeComments": true,
+		"sourceMap": true,
+		"suppressImplicitAnyIndexErrors": true,
+        
+		"target": "es6",
+		"jsx": "react",
+
+		"lib": [
+			"dom",
+			"es2017"
+		]
+	}
+}
