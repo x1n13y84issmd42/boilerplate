@@ -8,7 +8,4 @@ export DEBUG="*,-mquery,-data/connection,-babel,-agenda*"
 
 clear
 echo -en "Building The App\n"
-node_modules/.bin/tsc --pretty --project tsconfig.json
-
-echo -en "Performing The Migration\n"
-chmod 777 run/migrate && sync && run/migrate
+node_modules/.bin/tsc --pretty --project tsconfig.json --watch
