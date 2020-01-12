@@ -8,4 +8,22 @@ export default {
 			.send("<center><h1 style='font-size:16em'>/</h1></center>")
 			.end();
 	},
+
+	login: function(req: Request, resp: Response) {
+		resp.set('Content-Type', 'text/html')
+			.status(200)
+			.send(`
+			<center>
+				<h1>Welcome</h1>
+				<p>Use one of these</p>
+
+				<ul>
+					<li><a href="/id/auth/fb">Facebook</a></li>
+					<li><a href="/id/auth/google">Google</a></li>
+					<li><a href="/id/auth/vk">VK</a></li>
+				</ul>
+			</center>
+			`)
+			.end();
+	},
 };

@@ -4,7 +4,8 @@ import apiRouter from './api';
 
 let router: Router = Router();
 
-router.use('/api', apiRouter);
 router.get('/', Home.index);
+router.use('/api', apiRouter);
+router.use('/login', Home.login);
 
 export default router;

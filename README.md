@@ -1,2 +1,2 @@
 # boilerplate
-A collection of boilerplate code I'm sick of typing.
+A TypeScript API boilerplate app.

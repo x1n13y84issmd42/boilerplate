@@ -4,14 +4,14 @@ import * as colors from 'ansicolors';
 
 const log = app.log('http');
 
-export default function (app) {
+export default function (xapp) {
 
 	return () => {
 		return new Promise((resolve, reject) => {
 			
 			let port = process.env.PORT || 4000;
 
-			let server = http.createServer(app);
+			let server = http.createServer(xapp);
 			
 			server.on('error', HTTPErrorHandler(reject));
 
@@ -26,7 +26,7 @@ export default function (app) {
 
 function HTTPErrorHandler(reject) {
 	return function (err) {
-		log(colors.white(colors.bgRed('HTTP Error handler')));
+		log.error('HTTP Error handler', err);
 		reject(err);
 	};
 }
