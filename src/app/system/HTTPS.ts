@@ -8,7 +8,7 @@ const log = app.log('https');
 export default function (app) {
 
 	return () => {
-		return new Promise((resolve) => {
+		return new Promise((resolve, reject) => {
 
 			var privateKey  = fs.readFileSync(process.env.SSL_KEY_PATH, 'utf8');
 			var certificate = fs.readFileSync(process.env.SSL_CERT_PATH, 'utf8');
@@ -22,7 +22,7 @@ export default function (app) {
 
 			let server = https.createServer(credentials, app);
 			
-			server.on('error', HTTPErrorHandler);
+			server.on('error', HTTPErrorHandler(reject));
 
 			server.listen(port, () => {
 				const p = colors.brightGreen(`${port}`);
@@ -34,7 +34,9 @@ export default function (app) {
 	};
 }
 
-function HTTPErrorHandler(err) {
-	log(colors.white(colors.bgRed('HTTPS Error handler')));
-	throw err;
+function HTTPErrorHandler(reject) {
+	return function(err) {
+		log.error('HTTPS Error handler', err);
+		reject(err);
+	}
 }

@@ -8,4 +8,9 @@ export DEBUG="*,-mquery,-data/connection,-babel,-agenda*"
 
 clear
 echo -en "Building The App\n"
-node_modules/.bin/tsc --pretty --project tsconfig.json
+
+cp src/tsconfig.json out/tsconfig.json
+cp .env out/.env
+cp -R ssl out/ssl
+
+node_modules/.bin/tsc --pretty --project src/tsconfig.json

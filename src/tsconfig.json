@@ -1,19 +1,21 @@
 {
 	"include": [
-		"./src/**/*"
+		"./**/*"
 	],
 	"exclude": [
 		"./node_modules",
 		"./out"
 	],
 	"compilerOptions": {
-		"outDir": "./out",
+		"outDir": "../out",
 		"baseUrl": "./",
 		"rootDir": "./",
 
 		"paths": {
 			"fw/*": ["fw/*"],
+			"booot": ["app/boot/index"],
 			"boot": ["app/boot/index"],
+			"ACL": ["app/lib/Auth/ACL"],
 			"HTTP/*": ["app/HTTP/*"],
 			"lib/*": ["app/lib/*"],
 			"main/*": ["app/main/*"],
@@ -22,6 +24,8 @@
 			"app": ["app/app"],
 			"main": ["app/main"],
 			"migrate": ["app/migrate"],
+			"tasks": ["app/tasks"],
+			"worker": ["app/worker"],
 		},
 
 		"module": "commonjs",

@@ -3,6 +3,6 @@ import ExampleController from 'HTTP/controllers/API/ExampleController';
 
 const router: Router = Router();
 
-router.get('/files', ExampleController.ctrler);
+router.get('/test', ExampleController.ctrler);
 
 export default router;

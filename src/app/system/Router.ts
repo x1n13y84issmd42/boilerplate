@@ -4,18 +4,30 @@ import * as app from 'app';
 
 const log = app.log('router');
 
-export default function (app) {
+export default function (xapp) {
 
 	return () => {
 		return new Promise((resolve) => {
 			router.get('/*', defaultHandler);
 
-			app.use(router);
-			app.use((err, req: Request, resp: Response, next) => {
-				log('Error handler');
-				log(err.name);
-				log(err.code);
-				log(err.message);
+			//	Printing the endpoints.
+			xapp._router.stack.forEach((r) => {
+				if (r.route && r.route.path) {
+					for (let rmI in r.route.methods) {
+						log(rmI.toLocaleUpperCase(), r.route.path);
+					}
+				}
+			});
+
+			//	Using the router
+			xapp.use(router);
+
+			//	Last line error handler
+			xapp.use((err, req: Request, resp: Response, next) => {
+				log.error('Error handler');
+				log.error(err.name);
+				log.error(err.code);
+				log.error(err.message);
 
 				resp.status(~~err.code || 500).json({
 					error: err.name,
@@ -26,6 +38,7 @@ export default function (app) {
 				next && next();
 			});
 
+			log('ready');
 			resolve();
 		});
 	};
